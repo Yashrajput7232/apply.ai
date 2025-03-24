@@ -3,7 +3,7 @@ import os ,sys
 # sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'Resume-Talior')))
 # sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'Cover-letter-email-generator')))
 
-from backend.Resume_Talior.ResumeTailorAgent import ResumeTailorAgent
+from backend.Resume_tailor.ResumeTailorAgent import ResumeTailorAgent
 import  backend.Cover_letter_email_generator.agent as Coverletter_agent
 
 app = Flask(__name__)

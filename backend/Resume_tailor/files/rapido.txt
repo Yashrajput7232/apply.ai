@@ -1,0 +1,18 @@
+Calling All Backend Professionals! 🚀
+Are you passionate about building scalable and efficient backend systems? 
+
+We at Rapido are currently looking for talented Backend Developers to join the Rapido team and help us innovate and enhance our backend infrastructure. If you're eager to work on cutting-edge projects, collaborate with a dynamic team, and make an impact in the tech world, we want to hear from you!
+
+Key Skills:
+Strong experience with Golang/Java/Node.js.
+Expertise in working with Microservices Architecture and Distributed Systems.
+Familiarity with Kubernetes, Docker, CI/CD and any cloud provider is a plus.
+Passion for building and maintaining resilient and scalable systems.
+Problem-solving skills and ability to work in an agile environment.
+
+What We Offer:
+Collaborative and inclusive work culture
+Opportunities to work on innovative projects
+
+A chance to be part of something big and make an impact!
+If you're ready to take the next step in your career and help us drive the future of backend systems, apply today or reach out for more details!
