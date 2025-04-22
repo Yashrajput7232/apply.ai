@@ -1,0 +1,31 @@
+FROM python:3.9-slim
+
+# Install necessary packages
+RUN apt-get update && apt-get install -y \
+    texlive-latex-base \
+    texlive-latex-extra \
+    texlive-fonts-recommended \
+    texlive-fonts-extra \
+    texlive-xetex \
+    && apt-get clean
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the application code
+COPY app.py /app/
+
+# Install Python dependencies
+RUN pip install flask
+
+# Expose the application port
+EXPOSE 5000
+
+# Run the Flask application
+CMD ["python", "app.py"]
+
+
+# docker build -t latex-api .
+# docker stop latex-api-container
+# docker rm latex-api-container
+# docker run -d -p 5000:5000 --name latex-api-container latex-api
