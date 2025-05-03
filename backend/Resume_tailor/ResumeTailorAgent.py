@@ -35,9 +35,3 @@ class ResumeTailorAgent(AIEngine):
         return "Instructions Stored Succesfully"
 
 
-resume_agent = ResumeTailorAgent()
-resume_agent.read_resume("files\originalResume.tex")
-resume_agent.read_job_description("files\\rapido.txt")
-
-Utility.filewriterlatex("files\TailoredResume.tex",resume_agent.generate_tailored_resume())
-

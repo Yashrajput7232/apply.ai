@@ -11,7 +11,8 @@ print("LaTeX Code:")
 print(latex_code)
 
 # Define the API endpoint and payload
-url = "http://localhost:5000/compile"
+# url = "http://localhost:5000/compile"
+url = "https://latex-api-xx5f.onrender.com/compile"
 payload = {"latex_code": latex_code}
 
 # Send the POST request
