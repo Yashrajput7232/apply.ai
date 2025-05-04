@@ -496,7 +496,7 @@ Do not modify the formatting or structure of LaTeX resumes.
 
 Do not change the number of bullet points.
 
-Resume must strictly fit on one page.
+Resume must strictly fit on one page it should not exceeed try to svae spaces on the margins.
 
 Final output is raw LaTeX code, no comments, no wrapping, no labels.
 
