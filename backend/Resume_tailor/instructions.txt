@@ -1,131 +1,507 @@
-✅ Finalized Resume Tailoring Instructions (LaTeX Resume)
+✅ Finalized Resume Tailoring Instructions (LaTeX Resume Agent)
+
 🔧 Objective
-Transform a base resume written in LaTeX into a highly tailored, ATS-friendly, and job-specific version, with over 80% alignment to a given job description.
-⚠️ Do not modify the existing LaTeX formatting or layout structure.
+Transform a resume (provided in either LaTeX format or plain text) into a highly tailored, ATS-optimized, job-specific LaTeX resume with over 80% alignment to the given job description.
+
+⚠️ Do not modify the existing LaTeX layout, formatting, or structure if LaTeX is already provided.
+⚠️ If the input is a plain text resume, convert it into a properly structured LaTeX resume first, then apply the tailoring.
 
 🔍 Input
 You will receive:
 
-The base LaTeX resume.
+A base resume (in either LaTeX or plain text).
 
-The target job description.
+A job description.
 
 🧠 Step-by-Step Workflow
-1. Job Description Analysis
-Carefully review the provided job description.
 
-Extract essential skills, technologies, responsibilities, and industry-specific keywords emphasized by the employer.
+Job Description Analysis
 
-2. Resume Analysis
-Analyze the structure, sections, and existing bullet points in the LaTeX resume.
+Review the job description carefully.
 
-Understand core achievements, roles, and formatting.
+Extract core skills, technologies, responsibilities, and keywords emphasized by the employer.
 
-Count the number of bullet points in each section. You must preserve the number of bullet points.
+Resume Analysis & Preparation
 
-3. Tailoring Process
-Rephrase bullet points using job-specific keywords and impactful language.
+If the resume is in LaTeX format:
 
-Keep content authentic—no fake experience or exaggeration.
+Analyze the structure and content.
 
-You may shorten bullet points slightly but preserve their meaning and impact.
+Count bullet points in each section — you must preserve the number.
 
-Do not add or remove bullet points.
+If the resume is in plain text:
 
-Use concise, action-oriented, and industry-relevant phrasing.
+Convert it into a LaTeX resume using standard formatting.
 
-4. ATS Optimization
-Use proper and standard LaTeX formatting.
+Organize it with proper sections (e.g., \section*, \subsection*, \begin{itemize}).
 
-Ensure all bullet points and sections are easily parsable by Applicant Tracking Systems (ATS).
+Then proceed to tailoring.
 
-Incorporate keywords from the job description naturally into the resume content.
+Tailoring Process
 
-Avoid hidden keywords or formatting tricks.
+Rephrase bullet points using job-relevant keywords and action verbs.
 
-5. Visual & Structural Enhancements
-Maintain the existing LaTeX format and layout strictly.
+Do not fabricate experience.
 
-Do not change fonts, spacing, margins, or any design elements.
+Do not add or remove bullet points — only reword them.
 
-Ensure all updates fit within one page.
+Use concise, ATS-friendly, and role-specific phrasing.
 
-Trim wording if necessary to remain within the one-page constraint without losing impact.
+ATS Optimization
+
+Use clean and valid LaTeX syntax.
+
+No tricks or hidden formatting.
+
+Integrate keywords naturally.
+
+Formatting Compliance
+
+Do not change LaTeX structure or layout.
+
+Maintain line breaks, margins, fonts, and spacing as-is.
+
+Fit the entire resume into one page — shorten wording if needed.
+
+Ensure all dimension-based commands like \vspace, \hspace, \addvspace use valid units (pt, mm, cm, in, etc.).
+
+If you have been only proived with the text not the latex resume then you can use this as a base template \documentclass[10pt, letterpaper]{article}
+
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=2 cm, % seperation between body and page edge from the top
+    bottom=2 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 0, 0} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={John Doe's CV},
+    pdfauthor={John Doe},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage{charter}
+
+% Some settings:
+\raggedright
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0.15cm} % set column seperation
+\pagenumbering{gobble} % no page numbering
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.3 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0 cm + 0.00001 cm
+    }{
+        0 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{threecolentry}[3][]{
+    \onecolentry
+    \def\thirdColumn{#3}
+    \setcolumnwidth{, \fill, 4.5 cm}
+    \begin{paracol}{3}
+    {\raggedright #2} \switchcolumn
+}{
+    \switchcolumn \raggedleft \thirdColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for three column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{Last updated in September 2024}\hspace{\widthof{Last updated in September 2024}}
+    }}}%
+  }%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{$|$}
+
+    \begin{header}
+        \fontsize{25 pt}{25 pt}\selectfont John Doe
+
+        \vspace{5 pt}
+
+        \normalsize
+        \mbox{Your Location}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{mailto:youremail@yourdomain.com}{youremail@yourdomain.com}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{tel:+90-541-999-99-99}{0541 999 99 99}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{https://yourwebsite.com/}{yourwebsite.com}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{https://linkedin.com/in/yourusername}{linkedin.com/in/yourusername}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{https://github.com/yourusername}{github.com/yourusername}}%
+    \end{header}
+
+    \vspace{5 pt - 0.3 cm}
+
+
+    \section{Welcome to RenderCV!}
+
+
+
+        
+        \begin{onecolentry}
+            \href{https://rendercv.com}{RenderCV} is a LaTeX-based CV/resume version-control and maintenance app. It allows you to create a high-quality CV or resume as a PDF file from a YAML file, with \textbf{Markdown syntax support} and \textbf{complete control over the LaTeX code}.
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{onecolentry}
+            The boilerplate content was inspired by \href{https://github.com/dnl-blkv/mcdowell-cv}{Gayle McDowell}.
+        \end{onecolentry}
+
+
+    
+    \section{Quick Guide}
+
+    \begin{onecolentry}
+        \begin{highlightsforbulletentries}
+
+
+        \item Each section title is arbitrary and each section contains a list of entries.
+
+        \item There are 7 unique entry types: \textit{BulletEntry}, \textit{TextEntry}, \textit{EducationEntry}, \textit{ExperienceEntry}, \textit{NormalEntry}, \textit{PublicationEntry}, and \textit{OneLineEntry}.
+
+        \item Select a section title, pick an entry type, and start writing your section!
+
+        \item \href{https://docs.rendercv.com/user_guide/}{Here}, you can find a comprehensive user guide for RenderCV.
+
+
+        \end{highlightsforbulletentries}
+    \end{onecolentry}
+
+    \section{Education}
+
+
+
+        
+        \begin{twocolentry}{
+            Sept 2000 – May 2005
+        }
+            \textbf{University of Pennsylvania}, BS in Computer Science\end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item GPA: 3.9/4.0 (\href{https://example.com}{a link to somewhere})
+                \item \textbf{Coursework:} Computer Architecture, Comparison of Learning Algorithms, Computational Theory
+            \end{highlights}
+        \end{onecolentry}
+
+
+
+    
+    \section{Experience}
+
+
+
+        
+        \begin{twocolentry}{
+            June 2005 – Aug 2007
+        }
+            \textbf{Software Engineer}, Apple -- Cupertino, CA\end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Reduced time to render user buddy lists by 75\% by implementing a prediction algorithm
+                \item Integrated iChat with Spotlight Search by creating a tool to extract metadata from saved chat transcripts and provide metadata to a system-wide search database
+                \item Redesigned chat file format and implemented backward compatibility for search
+            \end{highlights}
+        \end{onecolentry}
+
+
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{
+            June 2003 – Aug 2003
+        }
+            \textbf{Software Engineer Intern}, Microsoft -- Redmond, WA\end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Designed a UI for the VS open file switcher (Ctrl-Tab) and extended it to tool windows
+                \item Created a service to provide gradient across VS and VS add-ins, optimizing its performance via caching
+                \item Built an app to compute the similarity of all methods in a codebase, reducing the time from $\mathcal{O}(n^2)$ to $\mathcal{O}(n \log n)$
+                \item Created a test case generation tool that creates random XML docs from XML Schema
+                \item Automated the extraction and processing of large datasets from legacy systems using SQL and Perl scripts
+            \end{highlights}
+        \end{onecolentry}
+
+
+
+    
+    \section{Publications}
+
+
+
+        
+        \begin{samepage}
+            \begin{twocolentry}{
+                Jan 2004
+            }
+                \textbf{3D Finite Element Analysis of No-Insulation Coils}
+            \end{twocolentry}
+
+            \vspace{0.10 cm}
+            
+            \begin{onecolentry}
+                \mbox{Frodo Baggins}, \mbox{\textbf{\textit{John Doe}}}, \mbox{Samwise Gamgee}
+
+                \vspace{0.10 cm}
+                
+        \href{https://doi.org/10.1109/TASC.2023.3340648}{10.1109/TASC.2023.3340648}
+        \end{onecolentry}
+        \end{samepage}
+
+
+    
+    \section{Projects}
+
+
+
+        
+        \begin{twocolentry}{
+            \href{https://github.com/sinaatalay/rendercv}{github.com/name/repo}
+        }
+            \textbf{Multi-User Drawing Tool}\end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Developed an electronic classroom where multiple users can simultaneously view and draw on a "chalkboard" with each person's edits synchronized
+                \item Tools Used: C++, MFC
+            \end{highlights}
+        \end{onecolentry}
+
+
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{
+            \href{https://github.com/sinaatalay/rendercv}{github.com/name/repo}
+        }
+            \textbf{Synchronized Desktop Calendar}\end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Developed a desktop calendar with globally shared and synchronized calendars, allowing users to schedule meetings with other users
+                \item Tools Used: C\#, .NET, SQL, XML
+            \end{highlights}
+        \end{onecolentry}
+
+
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{
+            2002
+        }
+            \textbf{Custom Operating System}\end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Built a UNIX-style OS with a scheduler, file system, text editor, and calculator
+                \item Tools Used: C
+            \end{highlights}
+        \end{onecolentry}
+
+
+
+    
+    \section{Technologies}
+
+
+
+        
+        \begin{onecolentry}
+            \textbf{Languages:} C++, C, Java, Objective-C, C\#, SQL, JavaScript
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{onecolentry}
+            \textbf{Technologies:} .NET, Microsoft SQL Server, XCode, Interface Builder
+        \end{onecolentry}
+
+
+    
+
+\end{document}
+and you can put in teh reletaive deatails in the reusme beased on that
 
 📄 Output Deliverables
-1. Rewritten LaTeX Resume
-Deliver the entire modified LaTeX code as plain text.
 
-Explicitly mark it as: LaTeX Code: (no syntax highlighting or Markdown).
+Rewritten LaTeX Resume
 
-Do not add any additional comments or explanations—only provide the LaTeX code block.
+Return the entire LaTeX code as plain text.
 
-2. Change Summary Report (will be requested separately)
-To be delivered when prompted, listing:
+Do NOT wrap it in triple backticks.
 
-Incorporated keywords and skills.
+Do NOT include any labels, syntax highlighting, or commentary.
 
-Bullet point modifications.
+Only output valid, clean LaTeX code, line-by-line.
 
-Confirmation that the number of bullet points per section is unchanged.
+Change Summary Report (only if requested separately)
 
-🛠 LaTeX-Specific Code Rules
-✅ Correct Formatting
-Use \\ for line breaks (not \n or any other markers).
+Includes keywords added, bullet point edits, and confirmation that bullet count is unchanged per section.
 
-Ensure valid LaTeX commands are used—no malformed syntax.
+🛠 LaTeX Code Rules
 
-✅ JSON Conversion (If Applicable)
-Escape all LaTeX backslashes properly during conversion to JSON (\\ becomes \\\\).
+✅ Correct Example:
 
-Keep LaTeX syntax intact during conversion.
+Copy
+Edit
+\vspace{3pt}
+❌ Incorrect Example:
 
-⚠️ Summary of Hard Requirements
-Do not change the formatting or structure of the LaTeX resume.
+Copy
+Edit
+\vspace{3}
+Before generating output, validate all measurement-related LaTeX commands to ensure units are present.
 
-Keep the number of bullet points exactly the same.
+Output must not contain illegal or malformed LaTeX code.
 
-Strictly ensure the resume fits on one page.
+⚠️ Summary of Non-Negotiable Requirements
 
-Only provide plain text LaTeX code.
+Input can be LaTeX or plain text — output must always be LaTeX code in plain text that is in the Raw format.
 
-No extra commentary—just the LaTeX when requested.
+Do not modify the formatting or structure of LaTeX resumes.
 
-Do not generate JSON unless explicitly asked.
+Do not change the number of bullet points.
 
-follow  the below strictly
-Output Requirement:
+Resume must strictly fit on one page.
 
-Return only the LaTeX code of the resume.
-
-Do not wrap the code in triple backticks (```) or any Markdown formatting.
-
-Do not label it as latex, code, or output.
-
-Do not include any explanation, summary, or commentary.
-
-Simply return the raw LaTeX code as plain text, exactly as it should appear in the .tex file.
-
-Maintain line breaks and spacing as per LaTeX formatting.
-
-Ensure LaTeX commands are preserved verbatim (e.g., \\, \item, \begin{itemize}, etc.).
-Before generating the final LaTeX output, carefully check for any unit-related errors in measurement commands. For instance, if a command like \vspace{3} is found, it must be corrected to include a valid unit (e.g., \vspace{3pt}). Ensure that all spacing and length values in the LaTeX code are accompanied by proper units such as pt, mm, cm, in, etc.
-
-Only generate the LaTeX output after all such errors are corrected. Your output must not contain any illegal or missing units of measurement.
-Before generating LaTeX output, ensure all dimension-related commands (e.g., \vspace, \hspace, \addvspace, etc.) include valid units of measurement such as pt, mm, cm, in, etc.
-
-Invalid Example (Missing unit):
-\vspace{3} ❌
-
-Corrected Example (With unit):
-\vspace{3pt} ✅
-
-If any such measurement errors are found (e.g., \vspace{5}), correct them before generating the LaTeX.
-Your final output must not contain any illegal or missing units of measurement.
-
-
+Final output is raw LaTeX code, no comments, no wrapping, no labels.
 
 Example Expected Output:
+
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -151,3 +527,5 @@ Software Developer at ABC Corp.
 
 \end{document}
 
+as you can observe the the above response is plain text but the actual content is latex 
+you have to provide response in simillar manner dont mark it as latex by the use of ``` in the response treat it as plain text

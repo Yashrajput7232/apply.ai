@@ -16,7 +16,7 @@ class AIEngine:
         self.memory = {}
         self.memory['instrucions']=''''''
         print(f'AI Engine: {self.agent_name}')
-    
+        
     def generate_content(self, prompt, model="gemini-2.0-flash"):
         """Generate content using the specified model"""
         print(f'Generating content using model: {model}')
@@ -24,13 +24,27 @@ class AIEngine:
             model=model, 
             contents=prompt
         )
-        print(f'Content generated: {response.text}')
+        
+        # Assign response.text to a local variable
+        content = response.text
+        
+        # Remove the ```latex prefix and ``` suffix if present
+        if content.startswith("```latex") and content.endswith("```"):
+            content = content.removeprefix("```latex").removesuffix("```").strip()
+        
+        print(f'Content generated: {content}')
+        
+        # Define the output file path
         output_file_path = os.path.join(os.getcwd(), 'output.tex')
-
+        
+        # Write the generated content to the file
         with open(output_file_path, 'w') as f:
-            f.write(response.text)
+            f.write(content)
+        
         print(f'Output written to {output_file_path}')
-        return  output_file_path
+        
+        # Return the output file path
+        return output_file_path
     
     def store_memory(self, key, value):
         """Store a memory value"""
