@@ -1,5 +1,5 @@
 import flask
-from flask import url_for
+from flask import jsonify, url_for
 from authlib.integrations.flask_client import OAuth
 from dotenv import load_dotenv
 import os
@@ -47,12 +47,26 @@ def save_user_to_db(user_info):
         print(f"User {user_info['email']} already exists in the database.")
     
     client.close()
+    
+@app.route('/health', methods=['GET'])
+def health_check():
+    return jsonify({"status": "ok"}), 200   
 
 
 @app.route("/login/google")
 def login():
     try:
-        # Fallback to auto-generated URL for local development
+        # Use the Referer header to determine the frontend base URL
+        referer = flask.request.headers.get('Referer')
+        if referer:
+            # Extract the base URL from the Referer header
+            base_url = referer.rstrip('/')
+            session['next_url'] = f"{base_url}/dashboard"
+        else:
+            # Fallback to default if Referer is not available
+            session['next_url'] = '/dashboard'
+
+        # Redirect to Google's OAuth authorization endpoint
         redirect_uri = os.getenv("GOOGLE_REDIRECT_URI", url_for('authorize', _external=True))
         return google.authorize_redirect(redirect_uri)
     except Exception as e:
@@ -64,17 +78,19 @@ def authorize():
     try:
         # Exchange the authorization code for a token
         token = google.authorize_access_token()
-        print("Token:", token)  # Debugging
         userinfo_endpoint = google.server_metadata['userinfo_endpoint']
         res = google.get(userinfo_endpoint)
         user_info = res.json()
-        print("User Info:", user_info)  # Debugging
     except Exception as e:
-        print(f"Authorization Error: {e}")  # Log the error
+        print(f"Authorization Error: {e}")
         return f"An error occurred during authorization: {str(e)}", 500
+
     # Save user info to the database
     save_user_to_db(user_info)
-    return f"User {user_info['name']} logged in successfully!", 200
+
+    # Redirect to the original URL or fallback to /dashboard
+    next_url = session.pop('next_url', '/dashboard')
+    return redirect(next_url)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

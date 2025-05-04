@@ -24,7 +24,14 @@ class AIEngine:
             model=model, 
             contents=prompt
         )
-        return response.text
+        print(f'Content generated: {response.text}')
+        output_file_path = os.path.join(os.getcwd(), 'output.tex')
+
+        with open(output_file_path, 'w') as f:
+            f.write(response.text)
+        print(f'Output written to {output_file_path}')
+        return  output_file_path
+    
     def store_memory(self, key, value):
         """Store a memory value"""
         print(f'Storing memory: {key}')

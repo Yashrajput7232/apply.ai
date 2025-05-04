@@ -1,0 +1,153 @@
+✅ Finalized Resume Tailoring Instructions (LaTeX Resume)
+🔧 Objective
+Transform a base resume written in LaTeX into a highly tailored, ATS-friendly, and job-specific version, with over 80% alignment to a given job description.
+⚠️ Do not modify the existing LaTeX formatting or layout structure.
+
+🔍 Input
+You will receive:
+
+The base LaTeX resume.
+
+The target job description.
+
+🧠 Step-by-Step Workflow
+1. Job Description Analysis
+Carefully review the provided job description.
+
+Extract essential skills, technologies, responsibilities, and industry-specific keywords emphasized by the employer.
+
+2. Resume Analysis
+Analyze the structure, sections, and existing bullet points in the LaTeX resume.
+
+Understand core achievements, roles, and formatting.
+
+Count the number of bullet points in each section. You must preserve the number of bullet points.
+
+3. Tailoring Process
+Rephrase bullet points using job-specific keywords and impactful language.
+
+Keep content authentic—no fake experience or exaggeration.
+
+You may shorten bullet points slightly but preserve their meaning and impact.
+
+Do not add or remove bullet points.
+
+Use concise, action-oriented, and industry-relevant phrasing.
+
+4. ATS Optimization
+Use proper and standard LaTeX formatting.
+
+Ensure all bullet points and sections are easily parsable by Applicant Tracking Systems (ATS).
+
+Incorporate keywords from the job description naturally into the resume content.
+
+Avoid hidden keywords or formatting tricks.
+
+5. Visual & Structural Enhancements
+Maintain the existing LaTeX format and layout strictly.
+
+Do not change fonts, spacing, margins, or any design elements.
+
+Ensure all updates fit within one page.
+
+Trim wording if necessary to remain within the one-page constraint without losing impact.
+
+📄 Output Deliverables
+1. Rewritten LaTeX Resume
+Deliver the entire modified LaTeX code as plain text.
+
+Explicitly mark it as: LaTeX Code: (no syntax highlighting or Markdown).
+
+Do not add any additional comments or explanations—only provide the LaTeX code block.
+
+2. Change Summary Report (will be requested separately)
+To be delivered when prompted, listing:
+
+Incorporated keywords and skills.
+
+Bullet point modifications.
+
+Confirmation that the number of bullet points per section is unchanged.
+
+🛠 LaTeX-Specific Code Rules
+✅ Correct Formatting
+Use \\ for line breaks (not \n or any other markers).
+
+Ensure valid LaTeX commands are used—no malformed syntax.
+
+✅ JSON Conversion (If Applicable)
+Escape all LaTeX backslashes properly during conversion to JSON (\\ becomes \\\\).
+
+Keep LaTeX syntax intact during conversion.
+
+⚠️ Summary of Hard Requirements
+Do not change the formatting or structure of the LaTeX resume.
+
+Keep the number of bullet points exactly the same.
+
+Strictly ensure the resume fits on one page.
+
+Only provide plain text LaTeX code.
+
+No extra commentary—just the LaTeX when requested.
+
+Do not generate JSON unless explicitly asked.
+
+follow  the below strictly
+Output Requirement:
+
+Return only the LaTeX code of the resume.
+
+Do not wrap the code in triple backticks (```) or any Markdown formatting.
+
+Do not label it as latex, code, or output.
+
+Do not include any explanation, summary, or commentary.
+
+Simply return the raw LaTeX code as plain text, exactly as it should appear in the .tex file.
+
+Maintain line breaks and spacing as per LaTeX formatting.
+
+Ensure LaTeX commands are preserved verbatim (e.g., \\, \item, \begin{itemize}, etc.).
+Before generating the final LaTeX output, carefully check for any unit-related errors in measurement commands. For instance, if a command like \vspace{3} is found, it must be corrected to include a valid unit (e.g., \vspace{3pt}). Ensure that all spacing and length values in the LaTeX code are accompanied by proper units such as pt, mm, cm, in, etc.
+
+Only generate the LaTeX output after all such errors are corrected. Your output must not contain any illegal or missing units of measurement.
+Before generating LaTeX output, ensure all dimension-related commands (e.g., \vspace, \hspace, \addvspace, etc.) include valid units of measurement such as pt, mm, cm, in, etc.
+
+Invalid Example (Missing unit):
+\vspace{3} ❌
+
+Corrected Example (With unit):
+\vspace{3pt} ✅
+
+If any such measurement errors are found (e.g., \vspace{5}), correct them before generating the LaTeX.
+Your final output must not contain any illegal or missing units of measurement.
+
+
+
+Example Expected Output:
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\begin{document}
+
+\section*{John Doe}
+\vspace{5pt} % Correct use of unit
+
+\subsection*{Experience}
+\vspace{3pt} % Correct use of unit
+
+Software Developer at ABC Corp.
+\vspace{2pt} % Correct use of unit
+
+\begin{itemize}
+    \item Developed Python-based REST APIs using Flask framework.
+    \item Implemented and maintained backend services using Python.
+    \item Designed and built scalable API endpoints for data retrieval.
+\end{itemize}
+
+\end{document}
+
