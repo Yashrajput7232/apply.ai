@@ -1,58 +1,3 @@
-import requests
-
-# Define the API endpoint
-url = "https://resumetailor-0b6a.onrender.com/generate_tailored_resume"
-
-# Sample payload
-payload = {
-    "job_description": """ Job Description
-At Visa, the Finance Technology organization enables Visa's revenue growth through flexible rule-based pricing engines and global revenue platforms built on next-generation technologies. This includes managing system requirements, evaluating cutting-edge technologies, design, development, integration, quality assurance, implementation, and maintenance of corporate revenue applications.
-
-The candidate will work on developing and implementing applications that improve the effectiveness and efficiency of the Finance business function. The candidate should enjoy working on diverse technologies and should be excited to take initiatives to solve complex business problems and get the job done while taking on new challenges. You should thrive in team-oriented and fast-paced environments where each team-member is vital to the overall success of the projects.
-
-Responsibilities
-
-Build/Code applications using a variety of frontend and backend technologies.
-
-Experience with the software development lifecycle, including version control, build processes, testing, and code release.
-
-Writing test cases using tools like JUnit and performing testing to ensure applications are running as expected.
-
-Maintaining and enhancing applications after deployment.
-
-Design and build applications with high level of scalability, resiliency, and monitoring.
-
-Stay abreast of emerging technologies and proactively assess and evaluate the adoption thereof into the organization.
-
-Develop proofs of concept to validate ideas, facilitating the choice of the most effective solution approach.
-
-Work with limited direction, usually within a complex environment, to drive delivery of solutions and meet service levels
-
-Must be self-motivated with ability to work in a fast-paced agile delivery model.
-
-With active engagement, collaboration, effective communication, quality, integrity and reliable delivery, develop and maintain a trusted and valued relationship with the team, customers and technology partners.
-
-This is a hybrid position. Expectation of days in office will be confirmed by your hiring manager.
-
-Qualifications
-Basic Qualification
-•Bachelor's degree in a Computer Science or other Engineering discipline.
-
-Preferred Qualification
-• 0.6- 1.6 years of work experience in technology industry with coding and testing skills.
-· Strong technical competency and experience with web applications, web services, Java, JavaScript, J2EE, XML, unit-testing, shell-scripting and RDBMS is a plus.
-· Experience with Cassandra/solr/nosql experience as a plus.
-· Continuous Integration, Code/Test coverage working in different methodologies is a plus.
-· Must have proactive and strong communications to work well across teams.
-•Ability to work in a complex organization to determine business and customer
-needs, providing the best solution to meet those needs.
-•Strong teamwork focus and the ability to foster collaboration within and across
-teams.
-•Passionate about learning and applying new technologies and take pride in
-delivering working software.
-Please dont mess up with the formatting of the resume.
-""",
-"resume": r"""
 \documentclass[a4paper,10.8pt]{article}
 \usepackage{geometry}
 \geometry{margin=0.37in}
@@ -125,7 +70,14 @@ Backend Developer with strong proficiency in \textbf{Java, Python, C++, and Go},
     \item Improved \textbf{code maintainability, scalability}, and execution time through incremental Spring Boot optimizations.
 \end{itemize}
 \vspace{3 pt}
-
+\textbf{Shyena Tech Yarns - Software Engineer Intern} \hfill Oct 2023 -- Dec 2023\\
+\textbf{Key Skills}: Python, Django, REST APIs, Celery, Elasticsearch, Stripe API, AI/ML
+\begin{itemize}
+    \item Developed an \textbf{AI-based call analytics system} for real-time feedback extraction, improving support efficiency by 50\%.
+    \item Created scalable \textbf{Django REST APIs}, integrating \textbf{Elasticsearch} for fast querying and response.
+    \item Optimized \textbf{Celery-based background job execution}, reducing lag and improving concurrency.
+\end{itemize}
+\vspace{3 pt}
 
 \hrule
 \section*{Projects}
@@ -160,19 +112,3 @@ Backend Developer with strong proficiency in \textbf{Java, Python, C++, and Go},
 \end{itemize}
 
 \end{document}
-
-""",
-}
-
-# Make the POST request
-response = requests.post(url, json=payload)
-
-# Check the response
-if response.status_code == 200:
-    # Save the PDF file
-    with open("tailored_resume.pdf", "wb") as f:
-        f.write(response.content)
-    print("Tailored resume downloaded as 'tailored_resume.pdf'.")
-else:
-    print(f"Failed to generate tailored resume. Status code: {response.status_code}")
-    print("Response:", response.json())

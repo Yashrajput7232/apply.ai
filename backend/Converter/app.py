@@ -1,10 +1,16 @@
 from flask import Flask, request, send_file, jsonify
+from flask_cors import CORS
 import os
 import subprocess
 import tempfile
 from PyPDF2 import PdfReader
 
 app = Flask(__name__)
+
+# Enable CORS for all routes (for development)
+CORS(app, resources={r"/*": {"origins": "*"}})
+# In production, you might want:
+# CORS(app, resources={r"/*": {"origins": "https://your-frontend-domain.com"}})
 
 @app.route('/health', methods=['GET'])
 def health_check():
@@ -13,7 +19,7 @@ def health_check():
 @app.route('/compile', methods=['POST'])
 def compile_latex():
     try:
-        latex_code = request.json.get('latex_code')
+        latex_code = request.json.get('latex_code') or request.json.get('code')
         if not latex_code:
             return jsonify({"error": "No LaTeX code provided"}), 400
 
@@ -26,7 +32,7 @@ def compile_latex():
             with open(tex_file_path, 'w', encoding='utf-8') as tex_file:
                 tex_file.write(latex_code)
 
-            # Run pdflatex using TeX Live
+            # Run pdflatex
             result = subprocess.run(
                 ["pdflatex", "-interaction=nonstopmode", "-halt-on-error", "-output-directory", temp_dir, tex_file_path],
                 stdout=subprocess.PIPE,
@@ -46,7 +52,7 @@ def compile_latex():
                     "log": log_content
                 }), 500
 
-            return send_file(pdf_file_path, as_attachment=True, download_name="document.pdf")
+            return send_file(pdf_file_path, as_attachment=True, download_name="document.pdf", mimetype="application/pdf")
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
