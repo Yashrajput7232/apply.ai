@@ -20,7 +20,7 @@ class ResumeTailorAgent(AIEngine):
 
 
     def generate_tailored_resume(self):
-        self.give_instructions('/workspaces/apply.ai/backend/Resume_tailor/instructions.txt')
+        self.give_instructions('instructions.txt')
         print(f'Generating tailored resume')
         instructions = self.retrieve_memory('instructions')  # Note: plural, not singular
         job_description = self.retrieve_memory('job_description')

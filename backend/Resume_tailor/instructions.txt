@@ -1,4 +1,4 @@
-✅ Finalized Resume Tailoring Instructions (LaTeX Resume Agent)
+docker build -t yash7232/resumetailor:latest .✅ Finalized Resume Tailoring Instructions (LaTeX Resume Agent)
 
 🔧 Objective
 Transform a resume (provided in either LaTeX format or plain text) into a highly tailored, ATS-optimized, job-specific LaTeX resume with over 80% alignment to the given job description.

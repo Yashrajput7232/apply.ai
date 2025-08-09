@@ -1,10 +1,10 @@
 import requests
 
 # Define the API endpoint
-url = "http://localhost:6000/extract-text"
+url = "https://latex-pdf-compiler.onrender.com/extract-text"
 
 # Path to the PDF file
-pdf_file_path = "/workspaces/apply.ai/backend/Converter/output.pdf"
+pdf_file_path = "output.pdf"
 
 # Make the POST request
 with open(pdf_file_path, "rb") as pdf_file:

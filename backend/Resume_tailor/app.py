@@ -31,7 +31,8 @@ def generate_tailored_resume():
             tailored_resume = file.read()
             response = requests.post(
                 # 'https://latex-api-xx5f.onrender.com/compile',
-                'https://latex-pdf-compile-api.onrender.com/compile',
+                # 'https://latex-pdf-compile-api.onrender.com/compile',
+                'https://latex-api-xx5f.onrender.com/compile',
                 json={'latex_code': tailored_resume},
                 headers={'Content-Type': 'application/json'}
             )

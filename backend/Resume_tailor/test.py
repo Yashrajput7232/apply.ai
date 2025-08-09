@@ -1,7 +1,7 @@
 import requests
 
 # Define the API endpoint
-url = "http://localhost:5000/generate_tailored_resume"
+url = "https://resumetailor-0b6a.onrender.com/generate_tailored_resume"
 
 # Sample payload
 payload = {

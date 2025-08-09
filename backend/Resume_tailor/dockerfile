@@ -31,4 +31,4 @@ ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 
 # Command to run when container starts
-CMD ["python", "ResumeTailorAgent.py"]
+CMD ["python", "app.py"]
