@@ -272,7 +272,7 @@ response = requests.post(url, json=payload)
 # Check the response
 if response.status_code == 200:
     # Save the PDF file
-    with open("tailored_resume.pdf", "wb") as f:
+    with open("output.pdf", "wb") as f:
         f.write(response.content)
     print("Tailored resume downloaded as 'tailored_resume.pdf'.")
 else:
