@@ -2,3 +2,5 @@ flask
 google-genai
 PyLaTeX
 latex
+flask-cors
+reportlab

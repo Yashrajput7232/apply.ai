@@ -4,7 +4,8 @@ import requests
 url = "https://latex-pdf-compiler.onrender.com/extract-text"
 
 # Path to the PDF file
-pdf_file_path = "output.pdf"
+# pdf_file_path = "output.pdf"
+pdf_file_path = "backend/Resume_tailor/TEST Resume.pdf"
 
 # Make the POST request
 with open(pdf_file_path, "rb") as pdf_file:
