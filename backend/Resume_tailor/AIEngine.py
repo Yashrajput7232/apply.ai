@@ -17,7 +17,7 @@ class AIEngine:
         self.memory['instrucions']=''''''
         print(f'AI Engine: {self.agent_name}')
         
-    def generate_content(self, prompt, model="gemini-2.0-flash"):
+    def generate_content(self, prompt, model="gemini-2.5-pro"):
         """Generate content using the specified model"""
         print(f'Generating content using model: {model}')
         response = self.client.models.generate_content(
